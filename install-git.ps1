@@ -23,7 +23,7 @@ Write-Output "Installing $PackageFile"
     /CLOSEAPPLICATIONS `
     /RESTARTAPPLICATIONS `
     /LOG=$LogFile `
-    /LOADINF=PowerShellOptions.inf `
+    /LOADINF=git-for-windows.inf `
     | Out-Null
 
 $Result = $?
