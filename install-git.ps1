@@ -1,7 +1,11 @@
+$ErrorActionPreference = 'Stop'
+
 . ./install-functions.ps1
 
 $PackageFormat = 'Git-2.*64-bit.exe'
 $LogFile = ".install-git.log.tmp"
+
+# Invoke-WebRequest https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/Git-2.36.1-64-bit.exe -OutFile Git-2.36.1-64-bit.exe
 
 $PackageFile = Find-Install-Package-WIE -PackageFormat $PackageFormat
 if (!($?))
