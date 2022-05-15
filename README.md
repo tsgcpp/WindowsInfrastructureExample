@@ -22,3 +22,6 @@ An infrastructure example in Windows for CI
 
 #### Add to PATH
 - Run `>.\set-powershell-path.ps1`
+
+## License
+See [LICENSE](./LICENSE)
