@@ -20,3 +20,51 @@ function Find-Install-Package-WIE {
 
     return $PackageFile
 }
+
+function Set-Machine-Path-WIE
+{
+    param(
+        [string]$NewPath
+    )
+
+    $Path = Get-Path-WIE
+    if (Contains-Path-WIE -NewPath $NewPath -Path $Path)
+    {
+        Write-Output "$NewPath already exists"
+        return
+    }
+
+    Add-Path-WIE -NewPath $NewPath
+
+    Write-Output "$NewPath was added to the machine PATH"
+
+    $Path = Get-Path-WIE
+    Write-Output "PATH: $PATH"
+}
+
+function Get-Path-WIE
+{
+    return [Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::Machine)
+}
+
+function Add-Path-WIE
+{
+    param(
+        [string]$NewPath
+    )
+
+    $Path = Get-Path-WIE
+    $Path += ';' + $NewPath
+
+    [Environment]::SetEnvironmentVariable('PATH', $PATH, [System.EnvironmentVariableTarget]::Machine)
+}
+
+function Contains-Path-WIE
+{
+    param(
+        [string]$NewPath,
+        [string]$Path
+    )
+
+    return ";$Path;".Contains(";$NewPath;")
+}
