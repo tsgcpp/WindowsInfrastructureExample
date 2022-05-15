@@ -10,9 +10,15 @@ An infrastructure example in Windows for CI
 - Run `>Set-ExecutionPolicy RemoteSigned -Scope Process`
 - Run `>.\install-git.ps1`
 
+#### Add to PATH
+- Run `>.\set-git-path.ps1`
+
 ### PowerShell 7
 - Open PowerShell in this repository root as *Administrator*
 - Download and Place `PowerShell-7.x.x-win-x64.msi`
   - e.g. `>Invoke-WebRequest https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x64.msi -OutFile PowerShell-7.2.3-win-x64.msi`
 - Run `>Set-ExecutionPolicy RemoteSigned -Scope Process`
 - Run `>.\install-powershell.ps1`
+
+#### Add to PATH
+- Run `>.\set-powershell-path.ps1`
