@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+
 . ./install-functions.ps1
 
 $PackageFormat = 'Git-2.*64-bit.exe'

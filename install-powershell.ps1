@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+
 . ./install-functions.ps1
 
 $PackageFormat = 'PowerShell-7.*-win-x64.msi'
