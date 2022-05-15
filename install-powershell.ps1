@@ -6,6 +6,8 @@ $PackageFormat = 'PowerShell-7.*-win-x64.msi'
 $InstallFolder = 'C:\Program Files\PowerShell'
 $LogFile = ".install-powershell.log.tmp"
 
+# Invoke-WebRequest https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x64.msi -OutFile PowerShell-7.2.3-win-x64.msi
+
 $PackageFile = Find-Install-Package-WIE -PackageFormat $PackageFormat
 if (!($?))
 {
