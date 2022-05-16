@@ -11,6 +11,8 @@ An infrastructure example in Windows for CI
 - Run `>.\install-git.ps1`
 
 #### Add to PATH
+**!WARNING! This command will change `PATH` in the System Variable**
+
 - Run `>.\set-git-path.ps1`
 
 ### PowerShell 7
@@ -21,6 +23,8 @@ An infrastructure example in Windows for CI
 - Run `>.\install-powershell.ps1`
 
 #### Add to PATH
+**!WARNING! This command will change `PATH` in the System Variable**
+
 - Run `>.\set-powershell-path.ps1`
 
 ## License
