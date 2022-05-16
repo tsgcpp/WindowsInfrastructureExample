@@ -1,3 +1,5 @@
+# "-WIE" is the postfix of this example.
+
 function Find-Install-Package-WIE {
     param(
         [string]$PackageFormat
@@ -21,7 +23,7 @@ function Find-Install-Package-WIE {
     return $PackageFile
 }
 
-function Set-Machine-Path-WIE
+function Add-Machine-Path-If-Needed-WIE
 {
     param(
         [string]$NewPath
@@ -47,6 +49,15 @@ function Get-Path-WIE
     return [Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::Machine)
 }
 
+function Set-Path-WIE
+{
+    param(
+        [string]$Path
+    )
+
+    SETX /M PATH $Path
+}
+
 function Add-Path-WIE
 {
     param(
@@ -56,7 +67,7 @@ function Add-Path-WIE
     $Path = Get-Path-WIE
     $Path += ';' + $NewPath
 
-    [Environment]::SetEnvironmentVariable('PATH', $PATH, [System.EnvironmentVariableTarget]::Machine)
+    Set-Path-WIE -Path $PATH
 }
 
 function Contains-Path-WIE

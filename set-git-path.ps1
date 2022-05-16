@@ -2,4 +2,4 @@ $ErrorActionPreference = 'Stop'
 
 . ./install-functions.ps1
 
-Set-Machine-Path-WIE -NewPath 'C:\Program Files\Git\bin'
+Add-Machine-Path-If-Needed-WIE -NewPath 'C:\Program Files\Git\bin'
