@@ -21,7 +21,7 @@ function Find-Install-Package-WIE {
     return $PackageFile
 }
 
-function Set-Machine-Path-WIE
+function Add-Machine-Path-If-Needed-WIE
 {
     param(
         [string]$NewPath
