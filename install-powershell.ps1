@@ -16,28 +16,28 @@ if (!($?))
 
 Write-Output "Installing $PackageFile"
 
-msiexec.exe `
-    /i $PackageFile `
-    /quiet `
-    /qn `
-    INSTALLFOLDER=`"$InstallFolder`" `
-    ADD_PATH=0 `
-    ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=0 `
-    ENABLE_PSREMOTING=0 `
-    REGISTER_MANIFEST=0 `
-    USE_MU=0 `
-    ENABLE_MU=0 `
-    /norestart `
-    /log $LogFile `
-    | Out-Null
-
-$Result = $?
+$Result = Start-Process -NoNewWindow -Wait -PassThru -FilePath "msiexec.exe" `
+    -ArgumentList `
+    "/i $PackageFile", `
+    "/quiet", `
+    "/qn", `
+    "INSTALLFOLDER=`"$InstallFolder`"", `
+    "ADD_PATH=0", `
+    "ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=0", `
+    "ENABLE_PSREMOTING=0", `
+    "REGISTER_MANIFEST=0", `
+    "USE_MU=0", `
+    "ENABLE_MU=0", `
+    "/norestart", `
+    "/log $LogFile"
 
 Get-Content $LogFile
 Remove-Item $LogFile
 
-if (!($Result))
+if ($Result.ExitCode -ne  0)
 {
-    Write-Error "Installation failed."
+    Write-Error "Installation failed. The exit code was $($Result.ExitCode)"
     exit 1
 }
+
+Write-Output "$PackageFile was installed successfully"
