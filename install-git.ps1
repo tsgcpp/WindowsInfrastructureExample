@@ -16,27 +16,28 @@ if (!($?))
 Write-Output "Installing $PackageFile"
 
 # See the install folder in PowerShellOptions.inf
-& ./$PackageFile `
-    /LANG=en `
-    /ALLUSERS `
-    /VERYSILENT `
-    /NORESTART `
-    /NOCANCEL `
-    /SP- `
-    /SUPPRESSMSGBOXES `
-    /CLOSEAPPLICATIONS `
-    /RESTARTAPPLICATIONS `
-    /LOG=$LogFile `
-    /LOADINF=git-for-windows.inf `
-    | Out-Null
-
-$Result = $?
-
+$Result = Start-Process -NoNewWindow -Wait -PassThru -FilePath "./$PackageFile" `
+    -ArgumentList `
+    "/LANG=en", `
+    "/ALLUSERS", `
+    "/VERYSILENT", `
+    "/NORESTART", `
+    "/NOCANCEL", `
+    "/SP-", `
+    "/SUPPRESSMSGBOXES", `
+    "/CLOSEAPPLICATIONS", `
+    "/RESTARTAPPLICATIONS", `
+    "/LOG=$LogFile", `
+    "/LOADINF=git-for-windows.inf"
+    
+    
 Get-Content $LogFile
 Remove-Item $LogFile
 
-if (!($Result))
+if ($Result.ExitCode -ne  0)
 {
-    Write-Error "Installation failed."
+    Write-Error "Installation failed. The exit code was $($Result.ExitCode)"
     exit 1
 }
+
+Write-Output "$PackageFile was installed successfully"
